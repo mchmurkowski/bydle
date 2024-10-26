@@ -14,7 +14,7 @@ ByDLe to minimalistyczne rozwiązanie, które bez ozdobników pomoże Ci szybko 
 
 1. **Klonuj repozytorium:**
    ```bash
-   git clone https://github.com/twoj-uzytkownik/ByDLe.git
+   git clone https://github.com/mchmurkowski/ByDLe.git
    ```
 2. **Zainstaluj wymagane pakiety: pandas i requests**
 3. **Uruchom skrypt**:
