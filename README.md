@@ -19,7 +19,7 @@ ByDLe to minimalistyczne rozwiązanie, które bez ozdobników pomoże Ci szybko 
 2. **Zainstaluj wymagane pakiety: pandas i requests**
 3. **Uruchom skrypt**:
    ```bash
-   python bydle.py
+   python app.py
    ```
 
 **Wizualny interfejs** przeprowadzi Cię przez proces wyboru jednostki oraz tematów, które chcesz pobrać. ByDLe zajmie się resztą.
