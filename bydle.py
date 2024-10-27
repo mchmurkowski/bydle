@@ -175,7 +175,9 @@ class QueryFrame(ttk.Frame):
                             "variables", f"&subject-id={s}"
                         )
                         if subject_variables["totalRecords"] > 100:
-                            raise NotImplementedError()
+                            print(
+                                f"Skipping subject {s}.\nSupport for larger datasets is not yet implemented"
+                            )
                         elif (
                             subject_variables["totalRecords"]
                             > subject_variables["pageSize"]
