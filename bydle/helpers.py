@@ -11,17 +11,10 @@ def get_data_from_api(endpoint: str, *args: str) -> Any:
     for arg in args:
         url += arg
     r = requests.get(url)
-    try:
-        match r.status_code:
-            case 200:
-                return r.json()
-            case _:
-                raise ValueError(url, r.status_code, "Coś poszło nie tak :-/")
-    except SyntaxError:
-        if r.status_code == 200:
-            return r.json()
-        else:
-            raise ValueError(url, r.status_code, "Coś poszło nie tak :-/")
+    if r.status_code == 200:
+        return r.json()
+    else:
+        raise ValueError(url, r.status_code, "Coś poszło nie tak :-/")
 
 
 if __name__ == "__main__":
