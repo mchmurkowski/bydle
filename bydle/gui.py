@@ -107,15 +107,15 @@ class MainFrame(ttk.Frame):
                 unit_selection: list[str] = self.unit_query_results_lb.get(
                     "active"
                 ).split(" - ")
-                unit_choice: dict[str, str | int] = {
+                unit_choice: dict[str, str] = {
                     "id": unit_selection[-1].strip("id: "),
                     "name": unit_selection[0],
-                    "level": int(unit_selection[1].strip("poziom: ")),
+                    "level": unit_selection[1].strip("poziom: "),
                 }
                 unit = UnitDetails(
                     id=unit_choice["id"],
                     name=unit_choice["name"],
-                    level=unit_choice["level"],
+                    level=int(unit_choice["level"]),
                 )
                 for s in self.subject_query.get().split(" "):
                     subject_details = get_data_from_api(endpoint=f"subjects/{s}")
