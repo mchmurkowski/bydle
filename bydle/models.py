@@ -23,7 +23,7 @@ class SubjectDetails:
             for k in variable:
                 if k.startswith("n"):
                     dimensions.append(variable[k])
-            variable_dimensions = dict(list(zip(self.dimensions, dimensions)))
+            variable_dimensions = dict(list(zip(dimension_names, dimensions)))
             collected_dimensions.append(
                 {"id": variable["id"], "dimensions": variable_dimensions}
             )
@@ -31,15 +31,15 @@ class SubjectDetails:
             if variable["id"] == variable_id:
                 return variable["dimensions"]
 
-    def construct_variable_query(self) -> str:
+    def construct_variable_query(self) -> list[tuple[str, str]]:
         variable_ids: list = []
         for variable in self.variables:
             variable_ids.append(variable["id"])
-        variable_query: str = ""
+        variable_query: list[tuple[str, str]] = []
         for id in variable_ids:
-            variable_query += f"&var-id={id}"
-        # page-size cannot exceed 100
-        variable_query += f"&page-size={len(variable_ids)}"
+            variable_query.append(("var-id", f"{id}"))
+        # page-size should not exceed 100
+        variable_query.append(("&page-size", f"{len(variable_ids)}"))
         return variable_query
 
 
