@@ -22,14 +22,13 @@ ByDLe pasie się na [licencji MIT](LICENSE) - korzystaj z niego swobodnie i za d
    ```bash
    git clone https://github.com/mchmurkowski/bydle.git
    ```
-
-   > [!TIP]
-   > Jeżeli użycie `git` nie wchodzi w grę (np. na służbowym komputerze), możesz pobrać repozytorium klikając zielony przycisk *Code* na górze strony, a następnie w opcję *Download ZIP*.
-
 2. Przejdź do folderu i uruchom skrypt:
    ```bash
    python app.py
    ```
+
+> [!TIP]
+> Jeżeli użycie `git` nie wchodzi w grę (np. na służbowym komputerze), możesz pobrać repozytorium klikając zielony przycisk *Code* na górze strony, a następnie w opcję *Download ZIP*.
 
 ## Przykład użycia
 
