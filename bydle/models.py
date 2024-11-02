@@ -39,7 +39,7 @@ class SubjectDetails:
         for id in variable_ids:
             variable_query.append(("var-id", f"{id}"))
         # page-size should not exceed 100
-        variable_query.append(("&page-size", f"{len(variable_ids)}"))
+        variable_query.append(("page-size", f"{len(variable_ids)}"))
         return variable_query
 
 
