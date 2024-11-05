@@ -143,16 +143,15 @@ class MainFrame(ttk.Frame):
                             query_items=subject.construct_variable_query(),
                         )
                         variables: list = []
-                        for var in range(len(variable_data["results"])):
+                        for _, result in enumerate(variable_data["results"]):
                             variable = VariableData(
-                                id=variable_data["results"][var]["id"],
-                                values=variable_data["results"][var]["values"],
+                                id=result["id"], values=result["values"]
                             )
                             variables.append(variable)
                         collected_data_frames: list = []
-                        for variable in range(len(variables)):
+                        for _, variable in enumerate(variables):
                             df = pd.DataFrame.from_dict(
-                                variables[variable].get_data_for_variable(
+                                variable.get_data_for_variable(
                                     unit=unit, subject=subject
                                 )
                             )

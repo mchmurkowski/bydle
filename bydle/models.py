@@ -57,11 +57,9 @@ class VariableData:
             data["Identyfikator zmiennej"] = self.id
             for dimension in variable_dimensions:
                 data[dimension] = variable_dimensions[dimension]
-            for variable in range(len(subject.variables)):
-                if subject.variables[variable]["id"] == self.id:
-                    data["Jednostka pomiaru"] = subject.variables[variable][
-                        "measureUnitName"
-                    ]
+            for _, variable in enumerate(subject.variables):
+                if variable["id"] == self.id:
+                    data["Jednostka pomiaru"] = variable["measureUnitName"]
                     break
             data[k] = [d[k] for d in self.values]
         return data
