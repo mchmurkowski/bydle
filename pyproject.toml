@@ -25,3 +25,4 @@ platforms = ["linux-64", "win-64"]
 bydle = { path = ".", editable = true }
 
 [tool.pixi.tasks]
+app = "python app.py"
