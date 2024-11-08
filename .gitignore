@@ -5,4 +5,3 @@ __pycache__/
 .pixi
 *.egg-info
 pixi.lock
-src/
