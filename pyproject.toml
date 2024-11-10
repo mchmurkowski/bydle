@@ -13,6 +13,9 @@ license-file = "LICENSE"
 readme = "README.md"
 repository = "https://github.com/mchmurkowski/bydle"
 
+[project.optional-dependencies]
+dev = ["vermin>=1.6.0,<2"]
+
 [build-system]
 build-backend = "hatchling.build"
 requires = ["hatchling"]
@@ -34,6 +37,7 @@ ruff = "*"
 fmt = { cmd = "ruff format", cwd = "src" }
 lint = { cmd = "ruff check", cwd = "src" }
 fix = { cmd = "ruff check --fix", cwd = "src" }
+vermin = "vermin --eval-annotations --backport dataclasses --backport typing src/"
 
 [tool.pixi.environments]
 dev = {features = ["dev"], no-default-feature = true}
