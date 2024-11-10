@@ -26,3 +26,14 @@ bydle = { path = ".", editable = true }
 
 [tool.pixi.tasks]
 app = { cmd = "python app.py", cwd = "src" }
+
+[tool.pixi.feature.dev.dependencies]
+ruff = "*"
+
+[tool.pixi.feature.dev.tasks]
+fmt = { cmd = "ruff format", cwd = "src" }
+lint = { cmd = "ruff check", cwd = "src" }
+fix = { cmd = "ruff check --fix", cwd = "src" }
+
+[tool.pixi.environments]
+dev = {features = ["dev"], no-default-feature = true}
