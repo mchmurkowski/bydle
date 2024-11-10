@@ -39,5 +39,9 @@ lint = { cmd = "ruff check", cwd = "src" }
 fix = { cmd = "ruff check --fix", cwd = "src" }
 vermin = "vermin --eval-annotations --backport dataclasses --backport typing src/"
 
+[tool.pixi.feature.py39.dependencies]
+python = "3.9.*"
+
 [tool.pixi.environments]
 dev = {features = ["dev"], no-default-feature = true}
+py39 = {features = ["py39"]}
