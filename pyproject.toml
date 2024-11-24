@@ -1,9 +1,6 @@
 [project]
-authors = [{name = "Michał Chmurkowski"}]
-dependencies = [
-    "pandas",
-    "requests"
-]
+authors = [{ name = "Michał Chmurkowski" }]
+dependencies = ["pandas", "requests"]
 description = "ByDLe to prosty skrypt Python z wizualnym interfejsem, ułatwiający pobieranie danych z Banku Danych Lokalnych GUS dla jednostek terytorialnych."
 name = "bydle"
 requires-python = ">=3.9"
@@ -43,5 +40,5 @@ vermin = "vermin --eval-annotations --backport dataclasses --backport typing src
 python = "3.9.*"
 
 [tool.pixi.environments]
-dev = {features = ["dev"], no-default-feature = true}
-py39 = {features = ["py39"]}
+dev = { features = ["dev"], no-default-feature = true }
+py39 = { features = ["py39"] }
