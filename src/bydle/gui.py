@@ -1,12 +1,9 @@
-import os
 import tkinter as tk
 from tkinter import filedialog, ttk
 from tkinter.messagebox import showerror, showinfo
 
-import pandas as pd
-
-from bydle.helpers import get_data_from_api
-from bydle.models import SubjectDetails, UnitDetails, VariableData
+from bydle.helpers import collect_frames, get_data_from_api, write_frames_as_csv
+from bydle.models import SubjectDetails, UnitDetails
 
 
 class Application(tk.Tk):
@@ -142,25 +139,14 @@ class MainFrame(ttk.Frame):
                             endpoint=f"data/by-unit/{unit.id}",
                             query_items=subject.construct_variable_query(),
                         )
-                        variables: list = []
-                        for _, result in enumerate(variable_data["results"]):
-                            variable = VariableData(
-                                id=result["id"], values=result["values"]
-                            )
-                            variables.append(variable)
-                        collected_data_frames: list = []
-                        for _, variable in enumerate(variables):
-                            df = pd.DataFrame.from_dict(
-                                variable.get_data_for_variable(
-                                    unit=unit, subject=subject
-                                )
-                            )
-                            collected_data_frames.append(df)
-                        df = pd.concat(collected_data_frames, ignore_index=True)
-                        # attrId of 0 signals no data - remove such rows
-                        df = df[df["attrId"] != 0]
-                        output_path = os.path.join(output_directory, f"{s}.csv")
-                        df.drop(columns=["attrId"]).to_csv(output_path, index=False)
+                        collected_data_frames = collect_frames(
+                            variable_data=variable_data, subject=subject, unit=unit
+                        )
+                        write_frames_as_csv(
+                            subject_id=s,
+                            collected_frames=collected_data_frames,
+                            target_dir=output_directory,
+                        )
 
         self.subject_query_submit_btn = ttk.Button(
             self.subject_query_lf, text="Pobierz", command=submit_subject_query
