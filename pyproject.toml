@@ -4,7 +4,7 @@ dependencies = ["pandas", "requests"]
 description = "ByDLe to prosty skrypt Python z wizualnym interfejsem, ułatwiający pobieranie danych z Banku Danych Lokalnych GUS dla jednostek terytorialnych."
 name = "bydle"
 requires-python = ">=3.9"
-version = "0.1.0"
+version = "0.1.1"
 license = "MIT"
 license-file = "LICENSE"
 readme = "README.md"
