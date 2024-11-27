@@ -145,11 +145,20 @@ class MainFrame(ttk.Frame):
                         collected_data_frames = collect_frames(
                             variable_data=variable_data, subject=subject, unit=unit
                         )
-                        write_frames_as_csv(
-                            subject_id=s,
-                            collected_frames=collected_data_frames,
-                            target_dir=output_directory,
-                        )
+                        try:
+                            write_frames_as_csv(
+                                subject_id=s,
+                                collected_frames=collected_data_frames,
+                                target_dir=output_directory,
+                            )
+                        except PermissionError:
+                            logger.error(
+                                "Tried to write file to directory with no permission"
+                            )
+                            showerror(
+                                title="Błąd",
+                                message="Brak uprawnień do zapisywania plików we wskazanym folderze. Wybierz inny folder",
+                            )
 
         self.subject_query_submit_btn = ttk.Button(
             self.subject_query_lf, text="Pobierz", command=submit_subject_query
