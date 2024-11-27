@@ -1,9 +1,12 @@
+import logging
 import tkinter as tk
 from tkinter import filedialog, ttk
 from tkinter.messagebox import showerror, showinfo
 
 from bydle.helpers import collect_frames, get_data_from_api, write_frames_as_csv
 from bydle.models import SubjectDetails, UnitDetails
+
+logger = logging.getLogger(__name__)
 
 
 class Application(tk.Tk):
@@ -124,8 +127,8 @@ class MainFrame(ttk.Frame):
                         endpoint="variables", query_items=query
                     )
                     if subject_variables["totalRecords"] > 100:
-                        print(
-                            f"Skipping subject {s}.\nSupport for larger datasets is not yet implemented"
+                        logger.warning(
+                            f"Support for larger datasets is not yet implemented. Skipping subject {s}."
                         )
                     else:
                         subject_variables = subject_variables["results"]

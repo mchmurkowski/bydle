@@ -1,3 +1,4 @@
+import logging
 import os
 from typing import Any, Optional
 from urllib.parse import urlencode, urljoin
@@ -6,6 +7,8 @@ import pandas as pd
 import requests
 
 from bydle.models import SubjectDetails, UnitDetails, VariableData
+
+logger = logging.getLogger(__name__)
 
 BASE_URL = "https://bdl.stat.gov.pl/api/v1/"
 
@@ -26,6 +29,7 @@ def get_data_from_api(
     for arg in args:
         url += f"&{arg}"
     r = requests.get(url)
+    logger.info(f"Request url: {url} - status code: {r.status_code}")
     if r.status_code == 200:
         return r.json()
     else:
@@ -56,6 +60,7 @@ def write_frames_as_csv(
     df = df[df["attrId"] != 0]
     output_path = os.path.join(target_dir, f"{subject_id}.csv")
     df.drop(columns=["attrId"]).to_csv(output_path, index=False)
+    logger.info(f"Saved data for {subject_id} to {output_path}")
 
 
 if __name__ == "__main__":
