@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Bydle")
+        self.title("ByDLe")
         self["padx"] = 20
         self["pady"] = 20
 
