@@ -159,6 +159,14 @@ class MainFrame(ttk.Frame):
                                 title="Błąd",
                                 message="Brak uprawnień do zapisywania plików we wskazanym folderze. Wybierz inny folder",
                             )
+                        except TypeError:
+                            # This occurs when user cancels out of directory chooser dialog, but only on Linux machines. On Windows the file is written to current working directory anyway
+                            # TODO: do not write files and do not send a request if the users cancels out of dialog as this is expected behavior from ux standpoint
+                            logger.error("No valid target directory provided")
+                            showerror(
+                                title="Błąd",
+                                message="Nie wskazano folderu docelowego. Wskaż folder, do którego mają zostać zapisane pliki",
+                            )
 
         self.subject_query_submit_btn = ttk.Button(
             self.subject_query_lf, text="Pobierz", command=submit_subject_query
