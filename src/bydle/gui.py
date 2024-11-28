@@ -33,7 +33,7 @@ class MainFrame(ttk.Frame):
 
         def submit_unit_query():
             if len(self.unit_query.get()) == 0:
-                no_unit_error_msg = showerror(
+                showerror(
                     title="Błąd", message="Wyszukaj nazwę jednostki w polu wyszukiwania"
                 )
                 self.unit_query_ef.focus()
@@ -88,17 +88,15 @@ class MainFrame(ttk.Frame):
 
         def submit_subject_query():
             if len(self.unit_query.get()) == 0:
-                no_unit_error_msg = showerror(
+                showerror(
                     title="Błąd", message="Wyszukaj nazwę jednostki w polu wyszukiwania"
                 )
                 self.unit_query_ef.focus()
             elif not self.unit_query_results_lb.curselection():
-                select_unit_first_msg = showinfo(
-                    title="Wskazówka", message="Wybierz jednostkę z listy wyników"
-                )
+                showinfo(title="Wskazówka", message="Wybierz jednostkę z listy wyników")
                 self.unit_query_results_lb.focus()
             elif len(self.subject_query.get()) == 0:
-                no_subjects_error_msg = showerror(
+                showerror(
                     title="Błąd", message="Podaj przynajmniej identyfikator podgrupy"
                 )
                 self.subject_query_ef.focus()
