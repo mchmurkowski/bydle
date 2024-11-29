@@ -124,7 +124,11 @@ class MainFrame(ttk.Frame):
                     subject_variables = get_data_from_api(
                         endpoint="variables", query_items=query
                     )
-                    if subject_variables["totalRecords"] > 100:
+                    # NOTE: It might be better for get_data_from_api() to return status code alongside response
+                    if subject_variables is None:
+                        logger.warning(f"Subject with id {s} does seem not to exist")
+                        pass
+                    elif subject_variables["totalRecords"] > 100:
                         logger.warning(
                             f"Support for larger datasets is not yet implemented. Skipping subject {s}."
                         )

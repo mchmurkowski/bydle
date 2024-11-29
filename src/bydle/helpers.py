@@ -31,7 +31,12 @@ def get_data_from_api(
     r = requests.get(url)
     logger.info(f"Request url: {url} - status code: {r.status_code}")
     if r.status_code == 200:
+        logger.info("Success")
         return r.json()
+    elif r.status_code == 422:
+        logger.error("Wrong parameter")
+    elif r.status_code == 429:
+        logger.error("Exceeded request limit")
     else:
         raise ValueError(url, r.status_code, "Something went wrong")
 
